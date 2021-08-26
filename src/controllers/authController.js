@@ -5,12 +5,21 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const inlineBase64 = require("nodemailer-plugin-inline-base64");
+const nodemailer = require("nodemailer");
 
 const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
-const Email = require('../utils/email');
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+     user: process.env.GMAIL_USER,
+     pass: process.env.GMAIL_PASS,
+  },
+});
+transporter.use("compile", inlineBase64({ cidPrefix: "123" }));
 
 
 const signToken = id => {
@@ -27,29 +36,34 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (req.file) req.body.photo = req.file.filename;
   const newUser = await User.create(req.body);
   const token = await signToken(newUser._id);
-  newUser.password = undefined;
-  res.status(200).json({
-    status: 'success',
+  
+  await transporter.sendMail({
+    to: req.body.email,
+    subject: "Confirm Account",
+     text: "Your Password is : " + req.body.password,
+ });
+ newUser.password = undefined;
+ res.status(200).json({
+    status: "success",
     token,
     data: {
-      newUser
-    }
-  });
-
-  SendSMS(newUser);
+       newUser,
+    },
+ });
+ // SendSMS(newUser);
 });
 
  
 
 exports.login = catchAsync(async (req, res, next) => {
-  const { phonenumber, password } = req.body;
+  const { email, password } = req.body;
   // 1) Check if email and password exist
-  if (!phonenumber || !password) {
-    return next(new AppError('Merci de saisir phonenumber et password correcte!', 400));
+  if (!email || !password) {
+    return next(new AppError('Merci de saisir email et password correcte!', 400));
   }
 
   // 2) Check if user exists && password is correct
-  const user = await User.findOne({ phonenumber }).select('+password');
+  const user = await User.findOne({ email }).select('+password');
   if (!user) {
     return next(new AppError("User Not found", 400));
   }
@@ -75,38 +89,6 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 
-exports.loginAdmin = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-  // 1) Check if email and password exist
-  if (!email || !password) {
-    return next(new AppError('Merci de saisir email et password correcte!', 400));
-  }
-
-  // 2) Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password');
-  if (!user) {
-    return next(new AppError("téléphone ou bien mot de passe incorrect", 400));
-  }
-  if (user.active == false) {
-    return next(new AppError("Vous n'avez pas les droits d'accés!", 400));
-  }
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect téléphone ou mot de passe inco', 401));
-  }
-
-  const token = await signToken(user._id);
-  user.password = undefined;
-  
-  res.status(200).json({
-    status: 'success',
-    token,
-    data: {
-      user
-    }
-  });
- // createSendToken(user, 200, res)
-});
 
 exports.ajouterIDdeviece = catchAsync(async(req,res,next) =>{
   if(!req.user.id) {
@@ -241,10 +223,11 @@ exports.isLoggedIn = async (req, res, next) => {
   next();
 };
 
-exports.restrictTo = (...roles) => {
+exports.restrictTo = (...role) => {
   return (req, res, next) => {
     // roles ['admin', 'lead-guide']. role='user'
-    if (!roles.includes(req.user.role)) {
+    console.log(req.user.role)
+    if (!role.includes(req.user.role)) {
       return next(
         new AppError('You do not have permission to perform this action', 403)
       );

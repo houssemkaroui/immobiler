@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please tell us your name!']
   },
+  prenom: {
+    type: String,
+    required: [true, 'Veuillez saisir votre numero prenom']
+  },
   phonenumber: {
     type: Number,
     unique: true,
@@ -35,43 +39,43 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
+    enum: ['agent', 'admin'],
+    default: 'agent'
   },
-  address: {
-    type: String,
-    required: true
-  },
+
   password: {
     type: String,
     required: [true, 'merci de saisir votre mots de passe'],
     minlength: 8,
     select: false
   },
+  // categorie :{
+  //   type:String,
+  //   required:[true, 'merci de saisir votre categorie']
+  // },
   lat: {
     type: String,
-    required: true
+    // required: true
   },
   lng: {
     type: String,
-    required: true
+    // required: true
   },
-  IDdevice :{
-   type:String,
-   required:[true,'chaque utilisateur doit avoir un id divice'],
-   default:'1423-9824654822-44f44r55d'
+  IDdevice: {
+    type: String,
+    // required:[true,'chaque utilisateur doit avoir un id divice'],
+    default: '1423-9824654822-44f44r55d'
   },
-  country :{
-    type:String,
-    required:true
+
+  createdAt: {
+    type: Date,
+    default: new Date()
+
   },
-  CountryCode:{
-    type:String,
-   required:true
-   },
+
   active: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   passwordConfirm: {
     type: String,

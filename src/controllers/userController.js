@@ -5,15 +5,6 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 
-// const multerStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/img/users');
-//   },
-//   filename: (req, file, cb) => {
-//     const ext = file.mimetype.split('/')[1];
-//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
-//   }
-// });
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
@@ -103,3 +94,15 @@ exports.getAllUsers = factory.getAll(User);
 // Do NOT update passwords with this!
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
+
+exports.GetListeAgent = catchAsync(async(req,res,next) =>{
+
+  const listeAgent = await User.find({role:'agent'});
+  if(!listeAgent) {
+      return next (new AppError("Eroor lors de get liste des client",400))
+  }
+  res.status(200).send({
+      data:listeAgent,
+      result:listeAgent.length
+  })
+})
