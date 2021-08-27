@@ -20,10 +20,13 @@ const userSchema = new mongoose.Schema({
     minlength: 10,
     validate: {
       validator: function (el) {
-        return el.toString().length > 10;
+        return el.toString().length > 10 || el.toString().length < 12;
       },
-      message: 'Votre numero doit etre au minimum 10 characters'
+      message: 'Votre numero doit etre au minimum 10  et au max 12 characters'
     }
+  },
+  codeVerficationWithEmail: {
+    type: Number, default: 0000
   },
   email: {
     type: String,
@@ -34,25 +37,26 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'default.jpg',
+   
     required: true
   },
   role: {
     type: String,
-    enum: ['agent', 'admin'],
+    enum: ['agent', 'admin','chefAgent'],
     default: 'agent'
   },
-
+agence:{
+  required: [true, 'Chaque agen doit affecter a une agence'],
+  type: mongoose.Schema.ObjectId,
+  ref: 'agences',
+},
   password: {
     type: String,
     required: [true, 'merci de saisir votre mots de passe'],
-    minlength: 8,
+    minlength: 4,
     select: false
   },
-  // categorie :{
-  //   type:String,
-  //   required:[true, 'merci de saisir votre categorie']
-  // },
+
   lat: {
     type: String,
     // required: true

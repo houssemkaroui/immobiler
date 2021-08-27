@@ -20,9 +20,10 @@ const visiteSchema = new mongoose.Schema({
           message: 'Votre numero doit etre au minimum 10 characters'
         }
       },
-    conseiller :{
-     type:String,
-    required:[true,'Please tell us your conseiller!']
+    agent :{
+      required: [true, 'chaque Visite contient un agent'],
+      type: mongoose.Schema.ObjectId,
+      ref: 'users',
     },
     frais :{
         type:String,

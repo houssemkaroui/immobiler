@@ -18,7 +18,7 @@ const categorieRouter = require('./src/routes/categorieRoutes');
 const clientRouter = require('./src/routes/clientRouters');
 const visiteRouter = require('./src/routes/visiteRoutes');
 const chatRouter = require('./src/routes/chatRoutes')
-
+const agenceRouter = require('./src/routes/agenceRoutes')
 
 // Start express app
 const app = express();
@@ -51,15 +51,16 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Limit requests from same API
-const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000,
-  message: 'Too many requests from this IP, please try again in an hour!'
-});
-app.use('/api', limiter);
+// // Limit requests from same API
+// const limiter = rateLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000,
+//   message: 'Too many requests from this IP, please try again in an hour!'
+// });
+// app.use('/api', limiter);
 
 // Stripe webhook, BEFORE body-parser, because stripe needs the body as stream
+
 
 
 // Body parser, reading data from body into req.body
@@ -93,7 +94,8 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/categorie',categorieRouter)
 app.use('/api/v1/client',clientRouter);
 app.use('/api/v1/visite',visiteRouter);
-app.use('/api/v1/chats',chatRouter)
+app.use('/api/v1/chats',chatRouter);
+app.use('/api/v1/agence',agenceRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

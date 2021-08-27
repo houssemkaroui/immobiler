@@ -10,10 +10,9 @@ router.post(
   authController.signup
 );
 router.post('/login', authController.login);
-router.post('/codeVerification', authController.VeriferCodeSMS);
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword', authController.resetPassword);
-
+router.post('/veriferCode',authController.veriferCode)
 router.use(authController.protect);
 router.get('/listeAgent',authController.restrictTo('admin'),userController.GetListeAgent)
 router.get('/Me', userController.getMe, userController.getUser);

@@ -23,8 +23,9 @@ const clientSchema = new mongoose.Schema({
         required:[true,'Please tell us your type Transaction!']
     },
     agence :{
-        type:String,
-        required:[true,'Please tell us your type agence!']
+        required: [true,'chaque client a son agence!'],
+        type: mongoose.Schema.ObjectId,
+        ref: 'agences',
     },
 
     UserID: {
