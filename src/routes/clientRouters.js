@@ -3,7 +3,9 @@ const clientController = require('../controllers/clientController')
 const authController = require('../controllers/authController');
 const uploadController = require('../controllers/uplodeController');
 
+
 const multer = require("multer");
+
 
 const router = express.Router();
 const storage = uploadController.storage('public/img/Client');

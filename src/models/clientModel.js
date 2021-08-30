@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 const clientSchema = new mongoose.Schema({
     nom: {
@@ -8,7 +9,8 @@ const clientSchema = new mongoose.Schema({
        
     },
     photo:{
-      type:String
+      type:String,
+      required:[true,'Please tell us your photo!']
     },
     numeroTelephone :{
         type:Number,
@@ -24,14 +26,14 @@ const clientSchema = new mongoose.Schema({
     },
     agence :{
         required: [true,'chaque client a son agence!'],
-        type: mongoose.Schema.ObjectId,
-        ref: 'agences',
+        type: Schema.Types.ObjectId,
+        ref: 'Agence',
     },
 
     UserID: {
         required: true,
-        type: mongoose.Schema.ObjectId,
-        ref: 'users',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
 
 

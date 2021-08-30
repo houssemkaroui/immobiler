@@ -95,7 +95,7 @@ app.use('/api/v1/categorie',categorieRouter)
 app.use('/api/v1/client',clientRouter);
 app.use('/api/v1/visite',visiteRouter);
 app.use('/api/v1/chats',chatRouter);
-app.use('/api/v1/agence',agenceRouter);
+app.use('/api/v1/agence',agenceRouter)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

@@ -13,7 +13,10 @@ const upload = multer({
 });
 
 router.use(authController.protect);
-router.get('/AllCategorie',authController.restrictTo('admin'),categorieController.GetAll);
+router.use(authController.restrictTo('admin'));
+router.get('/AllCategorie',categorieController.GetAll);
+router.post('/addCategorie',upload.array('photo',10),categorieController.AjouterCategorie);
+
 router.use(authController.restrictTo('agent'));
 router.post('/addCategorie',upload.array('photo',10),categorieController.AjouterCategorie);
 router.get('/ListeCategorieByAgent',categorieController.GetListeCategorie);

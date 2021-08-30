@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema;
 
 const bienSchema = new mongoose.Schema({
     typeBien: {
@@ -12,7 +13,6 @@ const bienSchema = new mongoose.Schema({
         required: [true, 'Please tell us your price!']
     },
     photo: [String]
-
     ,
     reference: {
         type: Number,
@@ -51,8 +51,8 @@ const bienSchema = new mongoose.Schema({
     },
     UserID: {
         required: true,
-        type: mongoose.Schema.ObjectId,
-        ref: 'users',
+        type: ObjectId,
+        ref: 'User',
     },
 
 

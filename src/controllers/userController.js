@@ -95,6 +95,19 @@ exports.getAllUsers = factory.getAll(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
+exports.GetAllTypeUser = catchAsync(async(req,res,next) =>{
+
+  const listeAgent = await User.find({});
+  if(!listeAgent) {
+      return next (new AppError("Eroor lors de get liste des client",400))
+  }
+  res.status(200).send({
+      data:listeAgent,
+      result:listeAgent.length
+  })
+})
+
+
 exports.GetListeAgent = catchAsync(async(req,res,next) =>{
 
   const listeAgent = await User.find({role:'agent'});

@@ -38,18 +38,18 @@ const userSchema = new mongoose.Schema({
   photo: {
     type: String,
    
-    required: true
+    required: [true,'Please provide your photo']
   },
   role: {
     type: String,
     enum: ['agent', 'admin','chefAgent'],
     default: 'agent'
   },
-agence:{
-  required: [true, 'Chaque agen doit affecter a une agence'],
-  type: mongoose.Schema.ObjectId,
-  ref: 'agences',
-},
+// agence:{
+//   required: [true, 'Chaque agen doit affecter a une agence'],
+//   type: mongoose.Schema.ObjectId,
+//   ref: 'agences',
+// },
   password: {
     type: String,
     required: [true, 'merci de saisir votre mots de passe'],

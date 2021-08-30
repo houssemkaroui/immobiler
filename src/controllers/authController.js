@@ -34,7 +34,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     return next(new AppError('Veuillez remplir votre formulaire!', 400));
   }
 
-  if (req.file) req.body.photo = req.file.filename;
+  if (req.files) req.body.photo = req.files[0].filename;
   var val = Math.floor(1000 + Math.random() * 9000);
   req.body.password = val
   req.body.passwordConfirm = val

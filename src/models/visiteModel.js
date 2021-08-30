@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema;
 
 const visiteSchema = new mongoose.Schema({
     reference: {
@@ -22,8 +23,8 @@ const visiteSchema = new mongoose.Schema({
       },
     agent :{
       required: [true, 'chaque Visite contient un agent'],
-      type: mongoose.Schema.ObjectId,
-      ref: 'users',
+      type: ObjectId,
+      ref: 'User',
     },
     frais :{
         type:String,
@@ -33,8 +34,8 @@ const visiteSchema = new mongoose.Schema({
 
     UserID: {
         required: true,
-        type: mongoose.Schema.ObjectId,
-        ref: 'users',
+        type: ObjectId,
+        ref: 'User',
     },
 
 });

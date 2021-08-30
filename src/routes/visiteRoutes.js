@@ -8,9 +8,9 @@ const router = express.Router();
 
 
 router.use(authController.protect);
-router.get('/AllVisite',authController.restrictTo('admin'),visiteController.GetAll);
+router.get('/AllVisite',visiteController.GetAll);
 
-router.use(authController.restrictTo('agent'));
+
 router.post('/addVisite',visiteController.AjouterVisite);
 router.get('/ListeVisiteByAgent',visiteController.GetListeVisite);
 

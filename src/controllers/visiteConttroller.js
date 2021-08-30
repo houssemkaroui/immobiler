@@ -35,14 +35,14 @@ exports.GetListeVisite = catchAsync(async(req,res,next) =>{
     res.status(200).send({
         data:listeVisite,
         result:listeVisite.length
-    })
+    });
 })
 
 exports.GetAll = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeVisite = await Categorie.find({});
+    const listeVisite = await Visite.find({}).populate({path: 'agent'});
     if(!listeVisite) {
         return next (new AppError("Eroor lors de get liste des visite",400))
     }

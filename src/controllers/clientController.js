@@ -11,7 +11,7 @@ exports.AjouterClient = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    if (req.files) req.body.photo = req.files.filename
+    if (req.files) req.body.photo = req.files[0].filename
    
      req.body.UserID = req.user.id
     const client = await Client.create(req.body)
@@ -43,7 +43,7 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeClient = await Client.find({});
+    const listeClient = await Client.find().populate({path: 'agence'});
     if(!listeClient) {
         return next (new AppError("Eroor lors de get liste des client",400))
     }

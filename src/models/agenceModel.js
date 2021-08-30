@@ -10,10 +10,11 @@ const AgenceSchema = new mongoose.Schema({
     numeroTelephone :{
         type: Number,
         unique: true,
-        required: [true, 'Veuillez saisir votre numero telephone'],
+        required: [true, 'Veuillez saisir votre numero téléphone'],
         minlength: 10,
         validate: {
           validator: function (el) {
+              console.log(el)
             return el.toString().length > 10 || el.toString().length < 12;
           },
           message: 'Votre numero doit etre au minimum 10  et au max 12 characters'
@@ -21,7 +22,7 @@ const AgenceSchema = new mongoose.Schema({
     },
     addresse: {
         type: String,
-        required: [true, 'Please tell us your addresse!'],
+        required: [true, 'Please tell  your addresse!'],
     },
 
 });
