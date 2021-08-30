@@ -15,6 +15,7 @@ const upload = multer({
 
 router.use(authController.protect);
 router.get('/AllClient',authController.restrictTo('admin'),clientController.GetAll);
+router.delete('/:id',clientController.deleteUser);
 
 //router.use(authController.restrictTo('agent'));
 router.post('/addClient',upload.array('photo'),clientController.AjouterClient);

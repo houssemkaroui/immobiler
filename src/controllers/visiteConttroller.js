@@ -5,6 +5,7 @@ const Visite = require('../models/visiteModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
+const factory = require('./handlerFactory');
 
 
 exports.AjouterVisite = catchAsync(async(req,res,next) =>{
@@ -51,3 +52,4 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
         result:listeVisite.length
     })
 })
+exports.deleteUser = factory.deleteOne(Visite);

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const Categorie = require('../models/categorieModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
 
 
@@ -11,6 +12,7 @@ exports.AjouterCategorie = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
+    console.log(req.body.photo,"ddddddddddddddddddddddddddd")
     if (req.files)
     req.body.photo=[]
     for(var i = 0; i < req.files.length; i++){
@@ -55,3 +57,5 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
         result:listeCategories.length
     })
 })
+
+exports.deleteUser = factory.deleteOne(Categorie);

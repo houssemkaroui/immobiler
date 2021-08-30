@@ -12,8 +12,7 @@ const bienSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please tell us your price!']
     },
-    photo: [String]
-    ,
+    photo: [String],
     reference: {
         type: Number,
         required: [true, 'Please tell us your reference!']

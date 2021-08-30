@@ -9,6 +9,7 @@ router.use(authController.protect);
 router.use(authController.restrictTo('admin'));
 router.post('/addAgence',agenceController.AjouterAgence);
 router.get('/AllAgence',agenceController.GetAll);
+router.delete('/:id',agenceController.deleteUser);
 
 
 module.exports = router;

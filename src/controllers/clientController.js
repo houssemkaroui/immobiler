@@ -5,6 +5,7 @@ const Client = require('../models/clientModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
+const factory = require('./handlerFactory');
 
 
 exports.AjouterClient = catchAsync(async(req,res,next) =>{
@@ -52,3 +53,4 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
         result:listeClient.length
     })
 })
+exports.deleteUser = factory.deleteOne(Client);

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const Agence = require('../models/agenceModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
 
 
@@ -36,3 +37,4 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
         result:listeAgence.length
     })
 })
+exports.deleteUser = factory.deleteOne(Agence);
