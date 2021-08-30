@@ -17,7 +17,7 @@ const bienSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please tell us your reference!']
     },
-    Description: {
+    description: {
         type: String,
         required: [true, 'Please tell us your Description!']
     },
