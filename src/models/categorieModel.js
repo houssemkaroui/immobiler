@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+
 const { ObjectId } = mongoose.Schema;
 
 const bienSchema = new mongoose.Schema({
@@ -21,25 +22,48 @@ const bienSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please tell us your Description!']
     },
-    NBChambre: {
-        type: Number
+
+    nomPropritaire: {
+        type: String,
+        required: [true, "Please tell us your nomPropritaire!"]
     },
-    NbSalleEaux: {
-        type: Number
+    cin: {
+        type: Number,
+        required: [true, 'Please tell us your CIN!']
     },
-    NbSalleBain: {
-        type: Number
+    adresseProprietaire: {
+        type: String,
+        required: [true, 'Please tell us your adresseProprietaire!']
     },
-    FormJuridique: {
-        type: String
+    numeroTitre: {
+        type: String,
+        required: [true, "Please tell us your numeroTitre!"]
     },
-    SurfaceCouverte: {
-        type: String
+    formJuridique: {
+        type: String,
+        required: [true, 'Please tell us your formJuridique!']
     },
-    SurfaceTotale: {
-        type: String
+    surfaceTotale: {
+        type: String,
+        required: [true, 'Please tell us your surfaceTotale!']
     },
-    GarageParking: {
+    superfice: {
+        type: String,
+        required: [true, 'Please tell us your superfice!']
+    },
+    adresse: {
+        type: String,
+        required: [true, 'Please tell us your adresse!']
+    },
+    codePostale: {
+        type: String,
+        required: [true, 'Please tell us your codePostale!']
+    },
+    statu: {
+        type: String,
+        enum: ['location', 'vente']
+    },
+    ferme: {
         type: Boolean,
         default: true
     },
@@ -48,12 +72,128 @@ const bienSchema = new mongoose.Schema({
         default: new Date()
 
     },
+    forme: {
+        type: String
+    },
+    separation: {
+        type: String
+    },
+    facade: {
+        type: String
+    },
+    largeur: {
+        type: String
+    },
+
+    annesConstruction: {
+        type: Date
+    },
+    cloture: {
+        type: Boolean,
+        required: false
+    },
+    permiBatir: {
+        type: Boolean,
+        default: false
+    },
+    eau: {
+        type: Boolean,
+        default: false
+    },
+    electriciter: {
+        type: Boolean,
+        default: false
+    },
+    gaze: {
+        type: Boolean,
+        default: false
+    },
+    onasse: {
+        type: Boolean,
+        default: false
+    },
+    commerciale: {
+        type: Boolean,
+        default: false
+    },
+    climatiseur: {
+        type: Boolean,
+        default: false
+    },
+    chauffage: {
+        type: Boolean,
+        default: false
+    },
+    piscine: {
+        type: Boolean,
+        default: false
+    },
+    interphone: {
+        type: Boolean,
+        default: false
+    },
+    balcon: {
+        type: Boolean,
+        default: false
+    },
+    doucheExterne: {
+        type: Boolean,
+        default: false
+    },
+    cameraServeillance: {
+        type: Boolean,
+        default: false
+    },
+    storeElectrique: {
+        type: Boolean,
+        default: false
+    },
+    nombreChambre: {
+        type: Number
+    },
+    nombreSalleEau: {
+        type: Number
+    },
+    nombreSalleBain: {
+        type: Number
+    },
+    garageParking: {
+        type: Boolean,
+        default: false
+    },
+    gardien: {
+        type: Boolean,
+        default: false
+    },
+    terrase: {
+        type: Boolean,
+        default: false
+    },
+    jardin: {
+        type: Boolean,
+        default: false
+    },
+    suite: {
+        type: Boolean,
+        default: false
+    },
+    cuisine: {
+        type: Boolean,
+        default: false
+    },
+    veranda: {
+        type: Boolean,
+        default: false
+    },
+    souSole: {
+        type: Boolean,
+        default: false
+    },
     UserID: {
         required: true,
         type: ObjectId,
         ref: 'User',
     },
-
 
 });
 

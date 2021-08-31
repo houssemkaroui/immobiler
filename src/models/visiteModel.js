@@ -1,14 +1,11 @@
 
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
-
 const visiteSchema = new mongoose.Schema({
   reference: {
     type: String,
     required: [true, 'Please tell  your reference!'],
-
   },
-
   numeroTelephone: {
     type: Number,
     unique: true,
@@ -39,7 +36,6 @@ const visiteSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Please tell us your dateFien!']
   },
-
   UserID: {
     required: true,
     type: ObjectId,
