@@ -95,6 +95,7 @@ exports.getAllUsers = factory.getAll(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
+//consulter la liste de tous les utilisateurs
 exports.GetAllTypeUser = catchAsync(async(req,res,next) =>{
 
   const listeAgent = await User.find({});
@@ -107,7 +108,7 @@ exports.GetAllTypeUser = catchAsync(async(req,res,next) =>{
   })
 })
 
-
+//consulte la liste des agent
 exports.GetListeAgent = catchAsync(async(req,res,next) =>{
 
   const listeAgent = await User.find({role:'agent'});

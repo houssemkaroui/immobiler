@@ -7,7 +7,7 @@ const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 
 
-
+//add agence
 exports.AjouterAgence = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
@@ -15,7 +15,7 @@ exports.AjouterAgence = catchAsync(async(req,res,next) =>{
 
     const agence = await Agence.create(req.body)
     if(!agence) {
-        return next (new AppError("Error lors de lajout de agence",400))
+        return next (new AppError("error lors de lajout de agence",400))
     }
     res.status(200).send({
         data:agence
@@ -23,18 +23,19 @@ exports.AjouterAgence = catchAsync(async(req,res,next) =>{
 })
 
 
-
+//consulter liste tous les agence 
 exports.GetAll = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
     const listeAgence = await Agence.find({});
     if(!listeAgence) {
-        return next (new AppError("Eroor lors de get liste des categories",400))
+        return next (new AppError("error lors de get liste des categories",400))
     }
     res.status(200).send({
         data:listeAgence,
         result:listeAgence.length
     })
 })
-exports.deleteUser = factory.deleteOne(Agence);
+//supprmier agence
+exports.deleteAgence = factory.deleteOne(Agence);

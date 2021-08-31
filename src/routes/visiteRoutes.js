@@ -10,7 +10,7 @@ const router = express.Router();
 router.use(authController.protect);
 router.get('/AllVisite',visiteController.GetAll);
 
-router.delete('/:id',visiteController.deleteUser);
+router.delete('/:id',visiteController.deleteVisite);
 
 router.post('/addVisite',visiteController.AjouterVisite);
 router.get('/ListeVisiteByAgent',visiteController.GetListeVisite);

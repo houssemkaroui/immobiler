@@ -17,7 +17,7 @@ exports.AjouterTache = catchAsync(async(req,res,next) =>{
      req.body.UserID = req.user.id
     const tache = await Tache.create(req.body)
     if(!tache) {
-        return next (new AppError("Error lors de lajout de tache",400))
+        return next (new AppError("error lors de lajout de tache",400))
     }
     res.status(200).send({
         data:tache
@@ -31,7 +31,7 @@ exports.GetListeTache = catchAsync(async(req,res,next) =>{
     }
     const listeTache = await Tache.find({UserID:req.user.id});
     if(!listeTache) {
-        return next (new AppError("Eroor lors de get liste des taches",400))
+        return next (new AppError("error lors de get liste des taches",400))
     }
     res.status(200).send({
         data:listeTache,
@@ -45,11 +45,23 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
     }
     const listeTache = await Tache.find({});
     if(!listeTache) {
-        return next (new AppError("Eroor lors de get liste des Tache",400))
+        return next (new AppError("error lors de get liste des Tache",400))
     }
     res.status(200).send({
         data:listeTache,
         result:listeTache.length
     })
+})
+exports.updateStautus = catchAsync(async(req,res,next) =>{
+     if(!req.user.id){
+         return next (new AppError('verifer votre token',401))
+     }
+     const updateStatus = await Tache.findByIdAndUpdate(req.params.id,{statusTache:req.body})
+     if(!updateStatus) {
+         return next (new AppError('error lors de update'))
+     }
+     res.status(200).send({
+         message:'votre et modifer'
+     })
 })
 exports.deleteTache = factory.deleteOne(Tache);
