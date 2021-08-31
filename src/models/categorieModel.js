@@ -7,33 +7,33 @@ const bienSchema = new mongoose.Schema({
     typeBien: {
         type: String,
         required: [true, 'Please tell us your typeBien!'],
-        enum: ['Maison', 'Terrain', 'Appartement', 'Local', 'Autres'],
+        enum: ['Maison', 'Terrain', 'Appartement'],
     },
     prix: {
         type: Number,
-        required: [true, 'Please tell us your price!']
+        required: [true, 'Please tell  your price!']
     },
     photo: [String],
     reference: {
         type: Number,
-        required: [true, 'Please tell us your reference!']
+        required: [true, 'Please tell  your reference!']
     },
     description: {
         type: String,
-        required: [true, 'Please tell us your Description!']
+        required: [true, 'Please tell  your Description!']
     },
 
     nomPropritaire: {
         type: String,
-        required: [true, "Please tell us your nomPropritaire!"]
+        required: [true, "Please tell  your nomPropritaire!"]
     },
     cin: {
         type: Number,
-        required: [true, 'Please tell us your CIN!']
+        required: [true, 'Please tell  your CIN!']
     },
     adresseProprietaire: {
         type: String,
-        required: [true, 'Please tell us your adresseProprietaire!']
+        required: [true, 'Please tell  your adresseProprietaire!']
     },
     numeroTitre: {
         type: String,
@@ -47,9 +47,17 @@ const bienSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please tell us your surfaceTotale!']
     },
+    superficeCouverte: {
+        type: String,
+       
+    },
     superfice: {
         type: String,
-        required: [true, 'Please tell us your superfice!']
+       
+    },
+    superficeConstructible: {
+        type: String,
+       
     },
     adresse: {
         type: String,
@@ -58,6 +66,18 @@ const bienSchema = new mongoose.Schema({
     codePostale: {
         type: String,
         required: [true, 'Please tell us your codePostale!']
+    },
+    phone:{
+        type:Number,
+        required:[true,'Please tell  your phone!']
+    },
+    categorieTerain:{
+        type: String,
+        enum: ['terrainConstructible', 'ferme']
+    },
+    categorieLocale:{
+        type: String,
+        enum: ['maison', 'appartement','etageVilla']
     },
     statu: {
         type: String,
@@ -189,6 +209,7 @@ const bienSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+   
     UserID: {
         required: true,
         type: ObjectId,
