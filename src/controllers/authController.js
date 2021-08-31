@@ -7,11 +7,12 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const inlineBase64 = require("nodemailer-plugin-inline-base64");
 const nodemailer = require("nodemailer");
-
+//pour le verification le code sms envoyer au telephone 
 const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
+//pour envoyer le email
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -28,7 +29,7 @@ const signToken = id => {
   });
 };
  
-//regester user
+//pour que l'utilisateur peur enregister dans l'applicartion
 exports.signup = catchAsync(async (req, res, next) => {
   if (!req.body) {
     return next(new AppError('Veuillez remplir votre formulaire!', 400));
@@ -58,15 +59,13 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
  
-
+//login un utilisateur
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  // 1) Check if email and password exist
   if (!email || !password) {
     return next(new AppError('Merci de saisir email et password correcte!', 400));
   }
 
-  // 2) Check if user exists && password is correct
   const user = await User.findOne({ email }).select('+password');
   if (!user) {
     return next(new AppError("User Not found", 400));
@@ -89,11 +88,10 @@ exports.login = catchAsync(async (req, res, next) => {
       user
     }
   });
- // createSendToken(user, 200, res)
 });
 
 
-
+//modifer le id de device pour l'application androuid
 exports.ajouterIDdeviece = catchAsync(async(req,res,next) =>{
   if(!req.user.id) {
     return next (new AppError('verifer votre token',400))
@@ -150,7 +148,7 @@ exports.VeriferCodeSMS = catchAsync(async (req, res, next) => {
   }
 });
 
-
+//medlwaire pour le token 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
@@ -226,7 +224,7 @@ exports.isLoggedIn = async (req, res, next) => {
   }
   next();
 };
-
+// donnes les accers  seleon le role
 exports.restrictTo = (...role) => {
   return (req, res, next) => {
     // roles ['admin', 'lead-guide']. role='user'
@@ -317,7 +315,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     },
  });
 });
-
+//modifer le mot de passe 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select('+password');
