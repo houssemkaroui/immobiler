@@ -19,8 +19,8 @@ const bienSchema = new mongoose.Schema({
         required: [true, 'Please tell  your reference!']
     },
     description: {
-        type: String,
-        required: [true, 'Please tell  your Description!']
+        type: String
+        //required: [true, 'Please tell  your Description!']
     },
 
     nomPropritaire: {
@@ -64,12 +64,27 @@ const bienSchema = new mongoose.Schema({
         required: [true, 'Please tell us your adresse!']
     },
     codePostale: {
-        type: String,
-        required: [true, 'Please tell us your codePostale!']
+        
+    type: Number,
+    required: [true, 'Veuillez saisir votre codePostale'],
+    minlength: 4,
+    validate: {
+      validator: function (el) {
+        return el.toString().length = 4 ;
+      },
+      message: 'Votre codePostale doit etre 4 characters'
+    }
     },
     phone:{
         type:Number,
-        required:[true,'Please tell  your phone!']
+        unique: true,
+        required:[true,'Please tell  your phone!'],
+        validate: {
+            validator: function (el) {
+              return el.toString().length > 10 || el.toString().length < 12;
+            },
+            message: 'Votre numero doit etre au minimum 10  et au max 12 characters'
+          }
     },
     categorieTerain:{
         type: String,
@@ -110,7 +125,7 @@ const bienSchema = new mongoose.Schema({
     },
     cloture: {
         type: Boolean,
-        required: false
+        default: false
     },
     permiBatir: {
         type: Boolean,
