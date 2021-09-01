@@ -25,7 +25,7 @@ const visiteSchema = new mongoose.Schema({
   },
   frais: {
     type: String,
-    required: [true, 'Please tell us your frais!']
+    required: [true, 'Please tell your frais!']
   },
   addresse: [String],
   dateDebut: {

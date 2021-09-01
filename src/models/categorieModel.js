@@ -37,34 +37,30 @@ const bienSchema = new mongoose.Schema({
     },
     numeroTitre: {
         type: String,
-        required: [true, "Please tell us your numeroTitre!"]
+        required: [true, "Please tell  your numeroTitre!"]
     },
     formJuridique: {
         type: String,
-        required: [true, 'Please tell us your formJuridique!']
+        required: [true, 'Please tell  your formJuridique!']
     },
     surfaceTotale: {
         type: String,
-        required: [true, 'Please tell us your surfaceTotale!']
+        required: [true, 'Please tell  your surfaceTotale!']
     },
     superficeCouverte: {
         type: String,
-       
     },
     superfice: {
         type: String,
-       
     },
     superficeConstructible: {
         type: String,
-       
     },
     adresse: {
         type: String,
-        required: [true, 'Please tell us your adresse!']
+        required: [true, 'Please tell  your adresse!']
     },
     codePostale: {
-        
     type: Number,
     required: [true, 'Veuillez saisir votre codePostale'],
     minlength: 4,
@@ -105,7 +101,6 @@ const bienSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: new Date()
-
     },
     forme: {
         type: String
@@ -119,7 +114,6 @@ const bienSchema = new mongoose.Schema({
     largeur: {
         type: String
     },
-
     annesConstruction: {
         type: Date
     },
@@ -224,7 +218,6 @@ const bienSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-   
     UserID: {
         required: true,
         type: ObjectId,

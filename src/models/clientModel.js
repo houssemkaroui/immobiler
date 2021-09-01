@@ -5,24 +5,24 @@ var Schema = mongoose.Schema;
 const clientSchema = new mongoose.Schema({
     nom: {
         type: String,
-        required: [true, 'Please tell us your nom!'],
+        required: [true, 'Please tell  your nom!'],
        
     },
     photo:{
       type:String,
-      required:[true,'Please tell us your photo!']
+      required:[true,'Please tell  your photo!']
     },
     numeroTelephone :{
         type:Number,
-        required:[true,'Please tell us your phone!']
+        required:[true,'Please tell  your phone!']
     },
     email :{
      type:String,
-    required:[true,'Please tell us your email!']
+    required:[true,'Please tell  your email!']
     },
     typeTransaction :{
         type:String,
-        required:[true,'Please tell us your type Transaction!']
+        required:[true,'Please tell  your type Transaction!']
     },
     agence :{
         required: [true,'chaque client a son agence!'],
