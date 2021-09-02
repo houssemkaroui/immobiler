@@ -16,7 +16,8 @@ const bienSchema = new mongoose.Schema({
     photo: [String],
     reference: {
         type: Number,
-        required: [true, 'Please tell  your reference!']
+        unique:true,
+        required: [true, 'reference déja utiliser!']
     },
     description: {
         type: String
@@ -73,7 +74,6 @@ const bienSchema = new mongoose.Schema({
     },
     phone:{
         type:Number,
-        unique: true,
         required:[true,'Please tell  your phone!'],
         validate: {
             validator: function (el) {

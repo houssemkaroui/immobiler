@@ -3,13 +3,18 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const tacheSchema = new mongoose.Schema({
-    tacheNom:{
+  nomTache:{
+    type:String,
+      required:[true,'Please tell  your nomTache!']
+  },
+    description:{
         type:String,
         required:[true,'Please tell  your dateDebut!']
     },
     statusTache :{
         type:String,
-        enum: ['encours', 'fini','accepter'],
+        enum: ['encours', 'fini','afaire'],
+        default:'afaire'
     },
 
   dateDebut: {
@@ -20,9 +25,13 @@ const tacheSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Please tell  your dateFien!']
   },
-
-  UserID: {
-    required: true,
+clientId:{
+  required: [true, 'chaque tache doit affecter a un client!'],
+  type: ObjectId,
+  ref: 'Client',
+},
+  agentID: {
+    required: [true, 'chaque tache doit affecter a un agent!'],
     type: ObjectId,
     ref: 'User',
   },

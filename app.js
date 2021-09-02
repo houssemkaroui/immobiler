@@ -19,6 +19,7 @@ const clientRouter = require('./src/routes/clientRouters');
 const visiteRouter = require('./src/routes/visiteRoutes');
 const chatRouter = require('./src/routes/chatRoutes')
 const agenceRouter = require('./src/routes/agenceRoutes')
+const tacheRouter = require('./src/routes/tacheRouters')
 
 // Start express app
 const app = express();
@@ -96,6 +97,8 @@ app.use('/api/v1/client',clientRouter);
 app.use('/api/v1/visite',visiteRouter);
 app.use('/api/v1/chats',chatRouter);
 app.use('/api/v1/agence',agenceRouter)
+app.use('/api/v1/tache',tacheRouter)
+
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

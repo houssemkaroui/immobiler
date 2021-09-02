@@ -6,7 +6,9 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.use(authController.protect);
-router.get('/AllTache',tacheController.GetAll);
+router.get('/AllTacheAffecter',tacheController.getTacheafecter);
+router.get('/AllTacheEncour',tacheController.getTacheEncour);
+router.get('/AllTacheFini',tacheController.getTacheFini);
 
 router.post('/addTache',tacheController.AjouterTache);
 router.get('/ListeTacheByAgent',tacheController.GetListeTache);

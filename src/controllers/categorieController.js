@@ -12,6 +12,7 @@ exports.AjouterCategorie = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
+    console.log(req.files)
     if (req.files)
     req.body.photo=[]
     for(var i = 0; i < req.files.length; i++){
