@@ -15,7 +15,7 @@ const bienSchema = new mongoose.Schema({
     },
     photo: [String],
     reference: {
-        type: Number,
+        type: String,
         unique:true,
         required: [true, 'reference déja utiliser!']
     },

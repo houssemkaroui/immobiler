@@ -40,7 +40,7 @@ exports.getTacheafecter = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'afaire'});
+    const listeTache = await Tache.find({statusTache:'afaire'}).sort('createdAt');
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }
@@ -53,7 +53,7 @@ exports.getTacheEncour = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'encours'});
+    const listeTache = await Tache.find({statusTache:'encours'}).sort('createdAt');
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }
@@ -66,7 +66,7 @@ exports.getTacheFini = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'fini'});
+    const listeTache = await Tache.find({statusTache:'fini'}).sort('createdAt');
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }
