@@ -7,6 +7,11 @@ const tacheSchema = new mongoose.Schema({
     type:String,
       required:[true,'Please tell  your nomTache!']
   },
+   typeTache:{
+     type:String,
+     enum:['achatOlivers', 'banque','poste','municipalite','tribunal','autres'],
+     required:[true,'Please tell  your typeTache!']
+   },
     description:{
         type:String,
         required:[true,'Please tell  your dateDebut!']
@@ -26,7 +31,6 @@ const tacheSchema = new mongoose.Schema({
     required: [true, 'Please tell  your dateFien!']
   },
 clientId:{
-  required: [true, 'chaque tache doit affecter a un client!'],
   type: ObjectId,
   ref: 'Client',
 },
