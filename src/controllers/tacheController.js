@@ -79,7 +79,7 @@ exports.updateStautus = catchAsync(async(req,res,next) =>{
      if(!req.user.id){
          return next (new AppError('verifer votre token',401))
      }
-     const updateStatus = await Tache.findByIdAndUpdate(req.params.id,{statusTache:req.body})
+     const updateStatus = await Tache.findByIdAndUpdate(req.params.id,{statusTache:req.body.statusTache})
      if(!updateStatus) {
          return next (new AppError('error lors de update'))
      }
