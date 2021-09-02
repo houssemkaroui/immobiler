@@ -52,3 +52,4 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
 })
 //supprimer une viste
 exports.deleteVisite = factory.deleteOne(Visite);
+exports.updateVisite = factory.updateOne(Visite);

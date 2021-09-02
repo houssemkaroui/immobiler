@@ -11,7 +11,7 @@ router.use(authController.protect);
 router.get('/AllVisite',visiteController.GetAll);
 
 router.delete('/:id',visiteController.deleteVisite);
-
+router.patch('/:id',visiteController.updateVisite);
 router.post('/addVisite',visiteController.AjouterVisite);
 router.get('/ListeVisiteByAgent',visiteController.GetListeVisite);
 

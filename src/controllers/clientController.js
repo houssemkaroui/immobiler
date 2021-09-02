@@ -55,3 +55,4 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
 })
 //supprimer un client
 exports.deleteClient = factory.deleteOne(Client);
+exports.updateClient = factory.updateOne(Client);
