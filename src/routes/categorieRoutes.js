@@ -20,5 +20,6 @@ router.delete('/:id',categorieController.deleteBien);
 
 router.post('/addCategorie',upload.array('photo',10),categorieController.AjouterCategorie);
 router.get('/ListeCategorieByAgent',categorieController.GetListeCategorie);
-
+router.get('/:id',categorieController.getBien)
+router.patch('/:id',upload.array('photo',10),categorieController.updateBien)
 module.exports = router;

@@ -1,19 +1,27 @@
 
 const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const clientSchema = new mongoose.Schema({
     nom: {
         type: String,
         required: [true, 'Please tell  your nom!'],
-       
+
+    },
+    prenom: {
+        type: String,
+        required: [true, 'Please tell  your prenom!'],
+    },
+    zone: {
+        type: String,
+        required: [true, 'Please tell  your zone!'],
     },
     photo:{
       type:String,
       required:[true,'Please tell  your photo!']
     },
     numeroTelephone :{
-        type:Number,
+        type:String,
         required:[true,'Please tell  your phone!']
     },
     email :{
@@ -21,18 +29,23 @@ const clientSchema = new mongoose.Schema({
     required:[true,'Please tell  your email!']
     },
     typeTransaction :{
-        type:String,
-        required:[true,'Please tell  your type Transaction!']
+        type: String,
+        enum: ['location', 'vente'],
+        default: 'location',
+        required: [true,'chaque client a son typeTransaction!']
     },
     agence :{
         required: [true,'chaque client a son agence!'],
-        type: Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'Agence',
     },
-
+    agentID :{
+        type: ObjectId,
+        ref: 'User',
+    },
     UserID: {
         required: true,
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'User',
     },
 

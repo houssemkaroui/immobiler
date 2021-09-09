@@ -18,9 +18,36 @@ exports.deleteOne = Model =>
 
 exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
-    
-    if (req.file) req.body.photo = req.file.filename;
+    console.log(req.files)
+    console.log(req.file)
+    if (req.files) req.body.photo = req.files[0].filename;
 
+    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+    if (!doc) {
+      return next(new AppError('No document found with that ID', 404));
+    }
+   // console.log(doc)
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: doc
+      }
+    });
+  });
+
+
+  exports.updateOnebien = Model =>
+  catchAsync(async (req, res, next) => {
+    
+    if (req.files) {
+      req.body.photo=[]
+    for(var i = 0; i < req.files.length; i++){
+        req.body.photo.push(req.files[i].filename);
+    }
+  }
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true

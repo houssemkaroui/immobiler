@@ -57,3 +57,5 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
 })
 //supprimer une bien
 exports.deleteBien = factory.deleteOne(Categorie);
+exports.getBien = factory.getOne(Categorie);
+exports.updateBien = factory.updateOnebien(Categorie);

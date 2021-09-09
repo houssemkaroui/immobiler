@@ -39,3 +39,5 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
 })
 //supprmier agence
 exports.deleteAgence = factory.deleteOne(Agence);
+exports.getAgence = factory.getOne(Agence)
+exports.updateagence = factory.updateOne(Agence)

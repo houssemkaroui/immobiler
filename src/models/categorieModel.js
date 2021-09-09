@@ -73,7 +73,7 @@ const bienSchema = new mongoose.Schema({
     }
     },
     phone:{
-        type:Number,
+        type:String,
         required:[true,'Please tell  your phone!'],
         validate: {
             validator: function (el) {

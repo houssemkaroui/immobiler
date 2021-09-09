@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const { ObjectId } = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -45,11 +46,11 @@ const userSchema = new mongoose.Schema({
     enum: ['agent', 'admin','chefAgent'],
     default: 'agent'
   },
-// agence:{
-//   required: [true, 'Chaque agen doit affecter a une agence'],
-//   type: mongoose.Schema.ObjectId,
-//   ref: 'agences',
-// },
+agence:{
+  required: [true, 'Chaque agen doit affecter a une agence'],
+  type: ObjectId,
+  ref: 'Agence',
+},
   password: {
     type: String,
     required: [true, 'merci de saisir votre mots de passe'],

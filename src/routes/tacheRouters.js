@@ -13,7 +13,7 @@ router.get('/AllTacheFini',tacheController.getTacheFini);
 router.post('/addTache',tacheController.AjouterTache);
 router.get('/ListeTacheByAgent',tacheController.GetListeTache);
 
-router.patch('/:id',tacheController.updateStautus);
+router.patch('/:id',tacheController.updatetache);
 router.delete('/:id',tacheController.deleteTache);
 
 module.exports = router;

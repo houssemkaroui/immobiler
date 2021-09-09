@@ -98,7 +98,7 @@ exports.deleteUser = factory.deleteOne(User);
 //consulter la liste de tous les utilisateurs
 exports.GetAllTypeUser = catchAsync(async(req,res,next) =>{
 
-  const listeAgent = await User.find({});
+  const listeAgent = await User.find({}).populate({path:'agence'});
   if(!listeAgent) {
       return next (new AppError("Eroor lors de get liste des client",400))
   }
@@ -111,7 +111,7 @@ exports.GetAllTypeUser = catchAsync(async(req,res,next) =>{
 //consulte la liste des agent
 exports.GetListeAgent = catchAsync(async(req,res,next) =>{
 
-  const listeAgent = await User.find({role:'agent'});
+  const listeAgent = await User.find({role:'agent'}).populate({path: 'agence'});
   if(!listeAgent) {
       return next (new AppError("Eroor lors de get liste des client",400))
   }
@@ -120,3 +120,17 @@ exports.GetListeAgent = catchAsync(async(req,res,next) =>{
       result:listeAgent.length
   })
 })
+
+
+//consulte un agent
+// exports.getUser = catchAsync(async(req,res,next) =>{
+
+//   const agent = await User.findById(req.params.id).populate({path: 'agence'});
+//   if(!agent) {
+//       return next (new AppError("Eroor lors de get liste des client",400))
+//   }
+//   res.status(200).send({
+//       data:agent,
+      
+//   })
+// })

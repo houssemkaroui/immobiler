@@ -8,7 +8,7 @@ const AgenceSchema = new mongoose.Schema({
        
     },
     numeroTelephone :{
-        type: Number,
+        type: String,
         unique: true,
         required: [true, 'Veuillez saisir votre numero téléphone'],
         minlength: 10,
