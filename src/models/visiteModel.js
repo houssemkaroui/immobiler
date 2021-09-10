@@ -27,6 +27,25 @@ const visiteSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'Client',
   },
+
+  noteVisite: {
+    type: String,
+
+  },
+
+
+  fedbakClient: {
+    enum: ['clientSatisfait', 'clientNonSatisfait'],
+    type: String
+
+  },
+
+  statuMarcher: {
+    enum: ['marcherGagner', 'marcherPerdu', 'negociationEnCours'],
+    type: String
+
+  },
+
   refernceBien: [
     {
       required: true,
@@ -37,8 +56,8 @@ const visiteSchema = new mongoose.Schema({
 
   statusVisite: {
     type: String,
-    enum: ['encours', 'raporter', 'anuller'],
-    default: 'encours'
+    enum: ['encours', 'raporter', 'anuller', 'enattend', 'terminer'],
+    default: 'enattend'
   },
 
   UserID: {
@@ -50,5 +69,4 @@ const visiteSchema = new mongoose.Schema({
 });
 
 const Visite = mongoose.model('Visite', visiteSchema);
-
 module.exports = Visite;

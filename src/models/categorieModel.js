@@ -7,7 +7,7 @@ const bienSchema = new mongoose.Schema({
     typeBien: {
         type: String,
         required: [true, 'Please tell us your typeBien!'],
-        enum: ['Maison', 'Terrain', 'Appartement'],
+        enum: ['Maison', 'Terrain', 'Appartement',"etageVilla"],
     },
     prix: {
         type: Number,
@@ -86,10 +86,10 @@ const bienSchema = new mongoose.Schema({
         type: String,
         enum: ['terrainConstructible', 'ferme']
     },
-    categorieLocale:{
-        type: String,
-        enum: ['maison', 'appartement','etageVilla']
-    },
+    // categorieLocale:{
+    //     type: String,
+    //     enum: ['maison', 'appartement','etageVilla',""]
+    // },
     statu: {
         type: String,
         enum: ['location', 'vente']

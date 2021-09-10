@@ -38,8 +38,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-   
-    required: [true,'Please provide your photo']
+    // required: [true,'Please provide your photo']
   },
   role: {
     type: String,
@@ -77,10 +76,11 @@ agence:{
     default: new Date()
 
   },
-
+  
+  
   active: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   passwordConfirm: {
     type: String,

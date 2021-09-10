@@ -15,9 +15,17 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please tell  your zone!'],
     },
+    budget: {
+        type: String,
+        required: [true, 'Please tell  your budget!'],
+    },
+    besoin: {
+        type: String,
+        required: [true, 'Please tell  your besoin!'],
+    },
     photo:{
       type:String,
-      required:[true,'Please tell  your photo!']
+     
     },
     numeroTelephone :{
         type:String,
@@ -47,8 +55,6 @@ const clientSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'User',
     },
-
-
 });
 
 const Client = mongoose.model('Client', clientSchema);

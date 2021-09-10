@@ -32,7 +32,7 @@ exports.GetListeCategorie = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeCategories = await Categorie.find({ $or: [  { UserID:req.user.id },{ agentId:req.user.id } ] });  
+    const listeCategories = await Categorie.find({ $or:[{ UserID:req.user.id },{ agentId:req.user.id}]});  
     if(!listeCategories) {
         return next (new AppError("error lors de get liste des categories",400));
     }
@@ -46,7 +46,7 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeCategories = await Categorie.find({});
+    const listeCategories = await Categorie.find({}).populate({path: 'agentId'});
     if(!listeCategories) {
         return next (new AppError("error lors de get liste des categories",400));
     }
