@@ -40,7 +40,7 @@ exports.getTacheafecter = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'afaire'}).populate({path: 'clientId'}).populate({path: 'agentID'});
+    const listeTache = await Tache.find({statusTache:'afaire'}).populate({path: 'agentID'});
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }
@@ -53,7 +53,7 @@ exports.getTacheEncour = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'encours'}).populate({path: 'clientId'}).populate({path: 'agentID'});
+    const listeTache = await Tache.find({statusTache:'encours'}).populate({path: 'agentID'});
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }
@@ -66,7 +66,7 @@ exports.getTacheFini = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeTache = await Tache.find({statusTache:'fini'}).populate({path: 'clientId'}).populate({path: 'agentID'});
+    const listeTache = await Tache.find({statusTache:'fini'}).populate({path: 'agentID'});
     if(!listeTache) {
         return next (new AppError("error lors de get liste des Tache",400))
     }

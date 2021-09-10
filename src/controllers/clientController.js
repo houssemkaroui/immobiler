@@ -30,7 +30,7 @@ exports.GetListeClient = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeClient = await Client.find({ $or: [  { UserID:req.user.id },{ agentID:req.user.id } ] });
+    const listeClient = await Client.find({ $or: [ { UserID:req.user.id },{ agentID:req.user.id } ] });
     if(!listeClient) {
         return next (new AppError("error lors de get liste des client",400))
     }

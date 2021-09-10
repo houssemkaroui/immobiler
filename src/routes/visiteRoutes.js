@@ -12,6 +12,6 @@ router.delete('/:id',visiteController.deleteVisite);
 router.patch('/:id',visiteController.updateVisite);
 router.get('/:id',visiteController.getVisite);
 router.post('/addVisite',visiteController.AjouterVisite);
-router.get('/ListeVisiteByAgent',visiteController.GetListeVisite);
+router.get('/',visiteController.GetListeVisite);
 
 module.exports = router;

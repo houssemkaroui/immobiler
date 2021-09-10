@@ -3,18 +3,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 const visiteSchema = new mongoose.Schema({
 
-  numeroTelephone: {
-    type: String,
-    unique: true,
-    required: [true, 'Veuillez saisir votre numero telephone'],
-    minlength: 10,
-    validate: {
-      validator: function (el) {
-        return el.toString().length > 10;
-      },
-      message: 'Votre numero doit etre au minimum 10 characters'
-    }
-  },
+
   agent: {
     required: [true, 'chaque Visite contient un agent'],
     type: ObjectId,
@@ -46,7 +35,11 @@ const visiteSchema = new mongoose.Schema({
     },
   ],
 
-
+  statusVisite: {
+    type: String,
+    enum: ['encours', 'raporter', 'anuller'],
+    default: 'encours'
+  },
 
   UserID: {
     required: true,

@@ -30,10 +30,7 @@ const tacheSchema = new mongoose.Schema({
     type: Date,
     required: [true, 'Please tell  your dateFien!']
   },
-clientId:{
-  type: ObjectId,
-  ref: 'Client',
-},
+
   agentID: {
     required: [true, 'chaque tache doit affecter a un agent!'],
     type: ObjectId,

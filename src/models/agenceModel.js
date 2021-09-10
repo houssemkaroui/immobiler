@@ -4,8 +4,12 @@ const mongoose = require('mongoose');
 const AgenceSchema = new mongoose.Schema({
     nom: {
         type: String,
-        required: [true, 'Please tell us your nom!'],
+        required: [true, 'Please tell  your nom!'],
        
+    },
+    zone:{
+        type: String,
+        required: [true, 'Please tell  your zone!'],
     },
     numeroTelephone :{
         type: String,

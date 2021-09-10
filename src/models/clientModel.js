@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
-
 const clientSchema = new mongoose.Schema({
     nom: {
         type: String,

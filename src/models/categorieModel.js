@@ -223,6 +223,11 @@ const bienSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'User',
     },
+    agentId: {
+        required: true,
+        type: ObjectId,
+        ref: 'User',
+    },
 
 });
 

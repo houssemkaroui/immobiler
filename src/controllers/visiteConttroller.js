@@ -27,7 +27,7 @@ exports.GetListeVisite = catchAsync(async(req,res,next) =>{
     if(!req.user.id) {
         return next (new AppError("vérifier votre token",401))
     }
-    const listeVisite = await Visite.find({UserID:req.user.id});
+    const listeVisite = await Visite.find({$or:[{UserID:req.user.id },{agent:req.user.id}]}).populate({path: 'agent'}).populate({path: 'clientId'}).populate({path: 'refernceBien'});     
     if(!listeVisite) {
         return next (new AppError("error lors de get liste des visite",400))
     }
@@ -50,6 +50,11 @@ exports.GetAll = catchAsync(async(req,res,next) =>{
         result:listeVisite.length
     })
 })
+
+
+
+
+
 //supprimer une viste
 exports.deleteVisite = factory.deleteOne(Visite);
 exports.updateVisite = factory.updateOne(Visite);
